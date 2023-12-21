@@ -147,7 +147,7 @@ class EzCaptcha:
         task_type = task["type"]
         if not isinstance(task_type, str):
             if not isinstance(task_type, self.AllTaskType):
-                return BaseEzCaptchaException(f"{lang_dict['unsupport_type_log_' + self.lang]} {str(task_type)}" + lang_dict['support_type_log_' + self.lang] + self.print_all_task_type())
+                return BaseEzCaptchaException(f"{lang_dict['unsupport_type_log_' + self.lang]} {str(task_type)}" + lang_dict['support_type_log_' + self.lang] + self._print_all_task_type())
             if "Recaptcha" in task_type.name:
                 return self._check_recaptcha(task)
             elif task_type == self.AllTaskType.FuncaptchaTaskProxyless:
@@ -156,7 +156,7 @@ class EzCaptcha:
                 return self._check_hcaptcha(task)
         else:
             if task_type.lower() not in [task.value.lower() for task in self.AllTaskType]:
-                return BaseEzCaptchaException(f"{lang_dict['unsupport_type_log_' + self.lang]} {str(task_type)}" + lang_dict['support_type_log_' + self.lang] + self.print_all_task_type())
+                return BaseEzCaptchaException(f"{lang_dict['unsupport_type_log_' + self.lang]} {str(task_type)}" + lang_dict['support_type_log_' + self.lang] + self._print_all_task_type())
             if "recaptcha" in task_type.lower():
                 return self._check_recaptcha(task)
             elif "funcaptcha" in task_type.lower():
