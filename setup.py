@@ -14,7 +14,7 @@ setup(
   name='ezcaptcha',
   version="1.0",
   description="EzCaptcha python sdk",
-  long_description=read_file('README_en.md'),
+  long_description=read_file('README.md'),
   long_description_content_type="text/markdown",
   license="MIT",
   keywords='EzCaptcha python sdk',
