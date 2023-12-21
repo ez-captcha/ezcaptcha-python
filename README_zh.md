@@ -1,4 +1,4 @@
-[English](README_en.md) | [中文版](README_zh.md)
+[English](README.md) | [中文版](README_zh.md)
 # 中文版
 EzCaptcha SDK for python
 ### 安装
