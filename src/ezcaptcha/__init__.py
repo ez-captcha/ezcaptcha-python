@@ -31,7 +31,7 @@ class EzCaptcha:
             raise BaseEzCaptchaException("Unsupported language")
         self.lang = lang
 
-    def solve(self, task: dict, waiting_interval: int = 3, waiting_timeout: int = 120, print_log: bool = False):
+    def solve(self, task: dict, waiting_interval: int = 3, waiting_timeout: int = 120, print_log: bool = False) -> dict:
         """
         start to solve captcha
         :param task: a dict contain task parameters
@@ -47,8 +47,7 @@ class EzCaptcha:
             assert isinstance(waiting_timeout, int)
         if waiting_timeout:
             assert isinstance(waiting_timeout, int)
-        if isinstance(task['type'], self.AllTaskType):
-            task['type'] = task['type'].value
+
         task_id = self.create_task(task, print_log)
         solution = self.get_task_result(task_id, task['type'], waiting_interval, waiting_timeout, print_log)
         return solution
@@ -128,10 +127,10 @@ class EzCaptcha:
         if 'isInvisible' not in task:
             print(f"\033[33m{lang_dict['recaptcha_missing_isInvisible_log_' + self.lang]}\033[0m")
         task_type = task["type"]
-        if task_type == self.AllTaskType.RecaptchaV2SEnterpriseTaskProxyless or task_type == self.AllTaskType.RecaptchaV2STaskProxyless:
+        if task_type.lower() == "recaptchav2senterprisetaskproxyless" or task_type.lower() == "recaptchav2staskproxyless":
             if 's' not in task:
                 return BaseEzCaptchaException(f"\033[33m{lang_dict['recaptcha_missing_s_log_' + self.lang]}\033[0m")
-        if task_type == self.AllTaskType.RecaptchaV3TaskProxyless or task_type == self.AllTaskType.RecaptchaV3EnterpriseTaskProxyless or task_type == self.AllTaskType.RecaptchaV3TaskProxylessS9:
+        if task_type.lower() == "recaptchav3taskproxyless" or task_type.lower() == "recaptchav3enterprisetaskproxyless" or task_type.lower() == "recaptchav3taskproxylesss9":
             if 'pageAction' not in task:
                 print(f"\033[33m{lang_dict['recaptcha_missing_pageAction_log_' + self.lang]}\033[0m")
         return None
@@ -157,19 +156,15 @@ class EzCaptcha:
         if not isinstance(task_type, str):
             if not isinstance(task_type, self.AllTaskType):
                 return BaseEzCaptchaException(f"{lang_dict['unsupport_type_log_' + self.lang]} {str(task_type)}" + lang_dict['support_type_log_' + self.lang] + self._print_all_task_type())
-            if "Recaptcha" in task_type.name:
-                return self._check_recaptcha(task)
-            elif task_type == self.AllTaskType.FuncaptchaTaskProxyless:
-                return self._check_funcaptcha(task)
-            elif task_type == self.AllTaskType.HcaptchaTaskProxyless:
-                return self._check_hcaptcha(task)
+            task['type'] = task['type'].value
+            task_type = task["type"]
         else:
             if task_type.lower() not in [task.value.lower() for task in self.AllTaskType]:
                 return BaseEzCaptchaException(f"{lang_dict['unsupport_type_log_' + self.lang]} {str(task_type)}" + lang_dict['support_type_log_' + self.lang] + self._print_all_task_type())
-            if "recaptcha" in task_type.lower():
-                return self._check_recaptcha(task)
-            elif "funcaptcha" in task_type.lower():
-                return self._check_funcaptcha(task)
-            elif "hcaptcha" in task_type.lower():
-                return self._check_hcaptcha(task)
+        if "recaptcha" in task_type.lower():
+            return self._check_recaptcha(task)
+        elif "funcaptcha" in task_type.lower():
+            return self._check_funcaptcha(task)
+        elif "hcaptcha" in task_type.lower():
+            return self._check_hcaptcha(task)
 
