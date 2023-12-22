@@ -74,6 +74,8 @@ class EzCaptcha:
 
     def get_task_result(self, task_id: str, task_type, waiting_interval: int, waiting_timeout: int, print_log: bool) -> str:
         times = 0
+        if 'funcaptcha' in task_type.lower():
+            waiting_interval = 1
         while times < waiting_timeout:
             try:
                 url = f'{self._api_host}/getTaskResult'
