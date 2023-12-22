@@ -128,7 +128,7 @@ class EzCaptcha:
         if 'isInvisible' not in task:
             print(f"\033[33m{lang_dict['recaptcha_missing_isInvisible_log_' + self.lang]}\033[0m")
         task_type = task["type"]
-        if task_type == self.AllTaskType.RecaptchaV2SEnterpriseTaskProxyless:
+        if task_type == self.AllTaskType.RecaptchaV2SEnterpriseTaskProxyless or task_type == self.AllTaskType.RecaptchaV2STaskProxyless:
             if 's' not in task:
                 return BaseEzCaptchaException(f"\033[33m{lang_dict['recaptcha_missing_s_log_' + self.lang]}\033[0m")
         if task_type == self.AllTaskType.RecaptchaV3TaskProxyless or task_type == self.AllTaskType.RecaptchaV3EnterpriseTaskProxyless or task_type == self.AllTaskType.RecaptchaV3TaskProxylessS9:

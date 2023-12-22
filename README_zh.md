@@ -19,7 +19,9 @@ solution = ez.solve({
     "isInvisible": False
 })
 if solution.get("errorId") == 0:
-    print(solution.get("token"))
+    # 获取结果Token
+    captcha_token = solution.get("token")
+    print(captcha_token)
 else:
     print(solution.get("errorDesc"))
 
