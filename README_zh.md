@@ -12,16 +12,19 @@ from ezcaptcha import EzCaptcha
 
 # Recaptcha
 ez = EzCaptcha(client_key="yourapiKey")
-token = ez.solve({
+solution = ez.solve({
     "websiteURL": "https://www.google.com/recaptcha/api2/demo",
     "websiteKey": "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-",
     "type": ez.AllTaskType.RecaptchaV2TaskProxyless,  # 或使用字符串 "RecaptchaV2TaskProxyless"
     "isInvisible": False
 })
-print(token)
+if solution.get("errorId") == 0:
+    print(solution.get("token"))
+else:
+    print(solution.get("errorDesc"))
 
 # Funcaptcha
-token = ez.solve({
+solution = ez.solve({
   "websiteURL": "https://iframe.arkoselabs.com",
   "websiteKey": "B7D8911C-5CC8-A9A3-35B0-554ACEE604DA",
   "type": ez.AllTaskType.FuncaptchaTaskProxyless,  # 或使用字符串 "FuncaptchaTaskProxyless"
@@ -40,7 +43,7 @@ ez = EzCaptcha(client_key="yourapiKey", lang="zh")
 from ezcaptcha import EzCaptcha
 
 ez = EzCaptcha(client_key="yourapiKey")
-token = ez.solve({
+solution = ez.solve({
     "websiteURL": "https://www.google.com/recaptcha/api2/demo",
     "websiteKey": "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-",
     "type": "RecaptchaV2TaskProxyless",
@@ -53,7 +56,7 @@ token = ez.solve({
 from ezcaptcha import EzCaptcha
 
 ez = EzCaptcha(client_key="yourapiKey")
-token = ez.solve({
+solution = ez.solve({
     "websiteURL": "https://www.google.com/recaptcha/api2/demo",
     "websiteKey": "6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-",
     "type": "RecaptchaV2TaskProxyless",
