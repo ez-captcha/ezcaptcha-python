@@ -50,8 +50,8 @@ class EzCaptcha:
         if isinstance(task['type'], self.AllTaskType):
             task['type'] = task['type'].value
         task_id = self.create_task(task, print_log)
-        token = self.get_task_result(task_id, task['type'], waiting_interval, waiting_timeout, print_log)
-        return token
+        solution = self.get_task_result(task_id, task['type'], waiting_interval, waiting_timeout, print_log)
+        return solution
 
     def create_task(self, task: dict, print_log: bool) -> str:
         url = f'{self._api_host}/createTask'
@@ -72,7 +72,7 @@ class EzCaptcha:
         except Exception as e:
             raise e
 
-    def get_task_result(self, task_id: str, task_type, waiting_interval: int, waiting_timeout: int, print_log: bool) -> str:
+    def get_task_result(self, task_id: str, task_type, waiting_interval: int, waiting_timeout: int, print_log: bool) -> dict:
         times = 0
         if 'funcaptcha' in task_type.lower():
             waiting_interval = 1
@@ -96,7 +96,12 @@ class EzCaptcha:
                         response = solution.get("token")
                     if response:
                         print(f"{lang_dict['get_token_log_' + self.lang]} ", response)
-                        return response
+                        solution = {"errorId": result.get("errorId"), "errorCode": result.get("errorCode"), "errorDesc": result.get("errorDesc"), "token": response}
+                        return solution
+                if result.get("errorId") != 0:
+                    solution = {"errorId": result.get("errorId"), "errorCode": result.get("errorCode"),
+                                "errorDesc": result.get("errorDesc"), "token": None}
+                    return solution
             except Exception as e:
                 if print_log:
                     print(f"[Exception] {str(e)}")
@@ -104,7 +109,9 @@ class EzCaptcha:
             time.sleep(waiting_interval)
             if print_log:
                 print(f"[Log] {lang_dict['waiting_time_log_' + self.lang]} {times}/{waiting_timeout}s")
-        raise BaseEzCaptchaException("The server has not returned the task results after the specified time has elapsed.")
+        solution = {"errorId": 1, "errorCode": "TIME_OUT",
+                    "errorDesc": lang_dict['get_token_failed_log_' + self.lang], "token": None}
+        return solution
 
     def _captcha_basic_check(self, params: dict):
         params_keys = params.keys()
