@@ -12,7 +12,7 @@ def read_file(filename):
 
 setup(
   name='ezcaptcha',
-  version="1.4",
+  version="1.5",
   description="EzCaptcha python sdk",
   long_description=read_file('README.md'),
   long_description_content_type="text/markdown",
