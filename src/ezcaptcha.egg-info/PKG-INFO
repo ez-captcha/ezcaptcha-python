@@ -1,6 +1,23 @@
+Metadata-Version: 2.1
+Name: ezcaptcha
+Version: 1.5
+Summary: EzCaptcha python sdk
+Home-page: https://github.com/ez-captcha/ezcaptcha-python
+Author: EzCaptcha
+Author-email: dev@ez-captcha.com
+License: MIT
+Keywords: EzCaptcha python sdk
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 [English](README.md) | [中文版](README_zh.md)
 ## English
-EzCaptcha official python SDK, we can solve recaptcha, funcaptcha and other captcha, check our official website: [EzCaptcha](https://ez-captcha.com/)
+EzCaptcha SDK for python
 ### Install
 ```
 pip install ezcaptcha
@@ -10,7 +27,7 @@ Sample:
 ```python
 from ezcaptcha import EzCaptcha
 
-# Solve Recaptcha
+# Recaptcha
 ez = EzCaptcha(client_key="yourapiKey")
 solution = ez.solve({
     "websiteURL": "https://www.google.com/recaptcha/api2/demo",
@@ -25,7 +42,7 @@ if solution.get("errorId") == 0:
 else:
     print(solution.get("errorDesc"))
 
-# Solve Funcaptcha
+# Funcaptcha
 solution = ez.solve({
   "websiteURL": "https://iframe.arkoselabs.com",
   "websiteKey": "B7D8911C-5CC8-A9A3-35B0-554ACEE604DA",

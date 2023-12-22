@@ -1,0 +1,30 @@
+lang_dict = {
+    "create_task_log_en": "Create_task response:",
+    "null_task_id_log_en": "Get null taskId, response:",
+    "get_task_result_log_en": "Get task result response:",
+    "get_token_log_en": "Get token successfully:",
+    "waiting_time_log_en": "Waiting time:",
+    "get_token_failed_log_en": "The server has not returned the task results after the specified time has elapsed.",
+    "missing_wesiteURL_log_en": "Missing \"websiteURL\" parameter",
+    "missing_wesiteKey_log_en": "Missing \"websiteKey\" parameter",
+    "recaptcha_missing_isInvisible_log_en": "Recaptcha Task missing \"isInvisible\" parameter, This will have a high probability of causing the generated token to be invalid.",
+    "recaptcha_missing_pageAction_log_en": "Recaptcha V3 Task missing \"pageAction\" parameter, This will have a high probability of causing the generated token to be invalid.",
+    "recaptcha_missing_s_log_en": "Missing s parameter",
+    "unsupport_type_log_en": "Unsupport tasktype:",
+    "support_type_log_en": "\n Please check support list: \n",
+    "create_task_log_zh": "创建任务返回:",
+    "null_task_id_log_zh": "获取到空taskId, 返回为:",
+    "get_task_result_log_zh": "获取任务结果返回:",
+    "get_token_log_zh": "获取Token成功:",
+    "waiting_time_log_zh": "等待时间:",
+    "get_token_failed_log_zh": "超时服务器仍未返回任务结果",
+    "missing_websiteURL_log_zh": "缺少 \"websiteURL\" 参数",
+    "missing_websiteKey_log_zh": "缺少 \"websiteKey\" 参数",
+    "recaptcha_missing_isInvisible_log_zh": "Recaptcha 任务缺少 \"isInvisible\" 参数, 这很有可能会导致获取到的Token无效。",
+    "recaptcha_missing_pageAction_log_zh": "Recaptcha V3 任务缺少 \"pageAction\" 参数, 这很有可能会导致获取到的Token无效。",
+    "recaptcha_missing_s_log_zh": "缺少s参数",
+    "unsupport_type_log_zh": "不支持的任务类型:",
+    "support_type_log_zh": "\n 请查看目前支持的任务类型: \n"
+}
+
+

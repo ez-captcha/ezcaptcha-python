@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+src/ezcaptcha/__init__.py
+src/ezcaptcha/error.py
+src/ezcaptcha/language.py
+src/ezcaptcha.egg-info/PKG-INFO
+src/ezcaptcha.egg-info/SOURCES.txt
+src/ezcaptcha.egg-info/dependency_links.txt
+src/ezcaptcha.egg-info/top_level.txt

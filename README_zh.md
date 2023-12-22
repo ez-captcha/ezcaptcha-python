@@ -1,6 +1,6 @@
 [English](README.md) | [中文版](README_zh.md)
 # 中文版
-EzCaptcha SDK for python
+EzCaptcha官方 python SDK，提供Recaptcha识别，FunCaptcha识别，以及其他各类Captcha识别，具体请查看官网: [EzCaptcha](https://ez-captcha.com/)
 ### 安装
 ```
 pip install ezcaptcha
@@ -10,7 +10,7 @@ pip install ezcaptcha
 ```python
 from ezcaptcha import EzCaptcha
 
-# Recaptcha
+# 识别Recaptcha
 ez = EzCaptcha(client_key="yourapiKey")
 solution = ez.solve({
     "websiteURL": "https://www.google.com/recaptcha/api2/demo",
@@ -25,7 +25,7 @@ if solution.get("errorId") == 0:
 else:
     print(solution.get("errorDesc"))
 
-# Funcaptcha
+# 识别Funcaptcha
 solution = ez.solve({
   "websiteURL": "https://iframe.arkoselabs.com",
   "websiteKey": "B7D8911C-5CC8-A9A3-35B0-554ACEE604DA",
